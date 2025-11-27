@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+
+display_name: full-dataset-training
+experiment_name: lab6-full
+
+code: .
+command: >
+  python train.py --data-path ${{inputs.training_data}}
+
+environment: azureml:lab6-env:1
+compute: azureml:cpu-cluster
+
+inputs:
+  training_data:
+    type: uri_file
+    path: azureml:full-dataset@latest
